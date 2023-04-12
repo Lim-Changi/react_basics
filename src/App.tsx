@@ -1,24 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import SignupComponent from "./components/signup";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h2>회원가입</h2>
+        <body>
+          <SignupComponent name="이메일" required={true} text={"이메일을"}/>
+          <SignupComponent name="비밀번호" required={true} text={"비밀번호를"}/>
+          <SignupComponent name="비밀번호 재확인" required={true} text="비밀번호를 다시" />
+          <SignupComponent name="이름" text={"이름을"}/>
+          <SignupComponent name="나이" text={"나이를"} />
+        </body>
+        <br/>
+        <button className="App-button">가입하기</button>
       </header>
+
     </div>
   );
 }

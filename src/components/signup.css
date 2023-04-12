@@ -1,0 +1,14 @@
+.form-label {
+    display: inline-block;
+    font-size: medium;
+    ;
+}
+
+.form-input {
+    display: inline-block;
+    width: 200px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
