@@ -1,46 +1,17 @@
-# Getting Started with Create React App
+# React 기초
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 기본 세팅
+- Create React App
+  - 리액트 프로젝트를 시작하려면 웹팩(Webpack), 바벨(Babel) 등 배워야할 기술들이 많은데 해당 기술들을 학습하고 리액트를 시작하기까지 시간이 오래 걸린다. 그래서 우리는 손쉽게 리액트 프로젝트를 생성할 수 있는 CRA를 사용한다.
+  - 현재에는 권장되지 않음
+- Vite
+  - 리액트 새로운 공식 문서가 출시되었고 새로운 공식문서에서 리액트를 시작하는 도구로써 더 이상 CRA에 대한 언급을 하지 않고 있다.
+  - 추후에 이것으로 리팩토링 하면 좋을 듯
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 연습 과정
+1. 기본적인 HTML, CSS 를 활용하여 회원가입 페이지 생성
+2. 공통부분 컴포넌트화
+   1. 공식문서에서는 클래스형 컴포넌트보다 함수형 컴포넌트 권장 
+3. 컴포넌트 Prop 적용
+4. 컴포넌트 State 적용
+5. ...
