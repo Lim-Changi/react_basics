@@ -4,8 +4,8 @@ const SignupComponent = (props: SignupInterface) => {
     const name = props.name
 
     return (
-        <div>
-            <label className="form-label" htmlFor={name}>{name}
+        <div className="form-label">
+            <label htmlFor={name}>{name}
                 {props.required ? <span style={{ fontSize: '12px'}}> 필수</span> : null}
                 {props.required ? <span style={{ color: 'red', fontSize: '12px'}}>*</span> : null}
             </label><br/>
@@ -15,7 +15,6 @@ const SignupComponent = (props: SignupInterface) => {
 };
 
 export default SignupComponent;
-
 interface SignupInterface {
     name: string
     text?: string

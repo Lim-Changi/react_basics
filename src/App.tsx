@@ -1,11 +1,11 @@
 import React from 'react';
-import './App.css';
-import SignupComponent from "./components/signup";
+import './components/Signup'
+import SignupComponent from "./components/Signup";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className= "signup-main">
+      <header>
         <h2>회원가입</h2>
         <body>
           <SignupComponent name="이메일" required={true} text={"이메일을"}/>
@@ -15,7 +15,7 @@ function App() {
           <SignupComponent name="나이" text={"나이를"} />
         </body>
         <br/>
-        <button className="App-button">가입하기</button>
+        <button className="signup-button">가입하기</button>
       </header>
 
     </div>
