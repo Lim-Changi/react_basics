@@ -15,7 +15,7 @@ const SignupComponent = (props: SignupInterface) => {
 };
 
 export default SignupComponent;
-interface SignupInterface {
+type SignupInterface = {
     name: string
     text?: string
     required?: boolean
