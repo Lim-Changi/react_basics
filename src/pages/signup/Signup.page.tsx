@@ -1,6 +1,8 @@
 import '../../components/signup.css'
 import SignupComponent from "../../components/Signup";
-import React, {useEffect, useState } from "react";
+import React, {useContext, useEffect, useState} from "react";
+import { useNavigate } from 'react-router-dom';
+import {UserContext} from "../../context/User";
 
 
 const SignupPage = () => {
@@ -9,17 +11,18 @@ const SignupPage = () => {
     const [isEmailTouched, setIsEmailTouched] = useState<boolean>(false);
     const [pw, setPw] = useState<string>('')
     const [pwCheck, setPwCheck] = useState<string>('')
-    const [isPwMatch, setIsPwMatch] = useState<boolean>(true)
+    const [isPwMatch, setIsPwMatch] = useState<boolean>(false)
     const [isPwTouched, setIsPwTouched] = useState<boolean>(false);
     const [isPwCheckTouched, setIsPwCheckTouched] = useState<boolean>(false);
     const [name, setName] = useState<string>('')
     const [age, setAge] = useState<number>(0)
+    const {setUser} = useContext(UserContext)
+    const navigate = useNavigate()
 
     const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const emailValue = event.target.value;
         if(!emailValue) {
-            setIsValidEmail(true)
-            return
+            setIsValidEmail(false)
         }
         setEmail(emailValue);
     };
@@ -67,15 +70,36 @@ const SignupPage = () => {
         if (isPwTouched && isPwCheckTouched) {
             setIsPwMatch(pw === pwCheck);
         }
-    }, [isPwTouched, pw, pwCheck]);
+    }, [isPwCheckTouched, isPwTouched, pw, pwCheck]);
 
     const submitSignup = () => {
+        setUser({email, name, age})
+        navigate('/main')
+    }
+
+    const handleReset = () => {
+        setEmail('')
+        setIsValidEmail(false)
+        setIsEmailTouched(false)
+        setPw('')
+        setPwCheck('')
+        setIsPwMatch(false)
+        setIsPwTouched(false)
+        setIsPwCheckTouched(false)
+        setName('')
+        setAge(0)
+
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.value = '';
+        });
     }
 
     return (
         <div className= "signup-main">
             <header>
                 <h2>회원가입</h2>
+
                 <div onChange={handleEmailChange} onBlur={handleEmailBlur}>
                     <SignupComponent name="이메일" required={true} text={"이메일을"}/>
                     {isEmailTouched && !isValidEmail && <span style={{ color: 'red', fontSize: '12px'}}>유효하지 않은 이메일 형식</span>}
@@ -85,7 +109,7 @@ const SignupPage = () => {
                 </div>
                 <div onChange={handlePwCheckChange} onBlur={handlePwCheckBlur}>
                     <SignupComponent name="비밀번호 재확인" required={true} text="비밀번호를 다시" />
-                    {!isPwMatch && <span style={{ color: 'red', fontSize: '12px'}}>비밀번호가 일치하지 않습니다.</span>}
+                    {isPwTouched && isPwCheckTouched && !isPwMatch && <span style={{ color: 'red', fontSize: '12px'}}>비밀번호가 일치하지 않습니다.</span>}
                 </div>
                 <div onChange={handleNameChange}>
                     <SignupComponent name="이름" text={"이름을"}/>
@@ -94,7 +118,9 @@ const SignupPage = () => {
                     <SignupComponent name="나이" text={"나이를"} />
                 </div>
                 <br/>
-                <button className="signup-button" onClick={submitSignup}>가입하기</button>
+                <button className="signup-button" disabled={!isPwMatch || !isValidEmail} onClick={submitSignup}>가입하기</button>
+                <br/>
+                <button className="reset-button" onClick={handleReset}>초기화</button>
             </header>
         </div>
     );
