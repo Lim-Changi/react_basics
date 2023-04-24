@@ -3,7 +3,7 @@ import React, { createContext, useState, ReactNode } from 'react';
 export type User = {
     email: string;
     name: string;
-    age: number;
+    age: string;
 }
 
 type UserContextType = {

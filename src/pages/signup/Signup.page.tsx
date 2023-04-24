@@ -6,16 +6,16 @@ import {UserContext} from "../../context/User";
 
 
 const SignupPage = () => {
-    const [email, setEmail] = useState<string>('')
-    const [isValidEmail, setIsValidEmail] = useState<boolean>(false)
-    const [isEmailTouched, setIsEmailTouched] = useState<boolean>(false);
-    const [pw, setPw] = useState<string>('')
-    const [pwCheck, setPwCheck] = useState<string>('')
-    const [isPwMatch, setIsPwMatch] = useState<boolean>(false)
-    const [isPwTouched, setIsPwTouched] = useState<boolean>(false);
-    const [isPwCheckTouched, setIsPwCheckTouched] = useState<boolean>(false);
-    const [name, setName] = useState<string>('')
-    const [age, setAge] = useState<number>(0)
+    const [email, setEmail] = useState('')
+    const [isValidEmail, setIsValidEmail] = useState(false)
+    const [isEmailTouched, setIsEmailTouched] = useState(false);
+    const [pw, setPw] = useState('')
+    const [pwCheck, setPwCheck] = useState('')
+    const [isPwMatch, setIsPwMatch] = useState(false)
+    const [isPwTouched, setIsPwTouched] = useState(false);
+    const [isPwCheckTouched, setIsPwCheckTouched] = useState(false);
+    const [name, setName] = useState('')
+    const [age, setAge] = useState('')
     const {setUser} = useContext(UserContext)
     const navigate = useNavigate()
 
@@ -55,7 +55,7 @@ const SignupPage = () => {
     };
 
     const handleAgeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const ageValue = Number(event.target.value);
+        const ageValue = event.target.value;
         setAge(ageValue);
     };
 
@@ -87,12 +87,7 @@ const SignupPage = () => {
         setIsPwTouched(false)
         setIsPwCheckTouched(false)
         setName('')
-        setAge(0)
-
-        const inputs = document.querySelectorAll('input');
-        inputs.forEach(input => {
-            input.value = '';
-        });
+        setAge('')
     }
 
     return (
@@ -101,21 +96,21 @@ const SignupPage = () => {
                 <h2>회원가입</h2>
 
                 <div onChange={handleEmailChange} onBlur={handleEmailBlur}>
-                    <SignupComponent name="이메일" required={true} text={"이메일을"}/>
+                    <SignupComponent name="이메일" required={true} text={"이메일을"} value={email}/>
                     {isEmailTouched && !isValidEmail && <span style={{ color: 'red', fontSize: '12px'}}>유효하지 않은 이메일 형식</span>}
                 </div>
                 <div onChange={handlePwChange} onBlur={handlePwBlur}>
-                    <SignupComponent name="비밀번호" required={true} text={"비밀번호를"}/>
+                    <SignupComponent name="비밀번호" required={true} text={"비밀번호를"} value={pw}/>
                 </div>
                 <div onChange={handlePwCheckChange} onBlur={handlePwCheckBlur}>
-                    <SignupComponent name="비밀번호 재확인" required={true} text="비밀번호를 다시" />
+                    <SignupComponent name="비밀번호 재확인" required={true} text="비밀번호를 다시" value={pwCheck}/>
                     {isPwTouched && isPwCheckTouched && !isPwMatch && <span style={{ color: 'red', fontSize: '12px'}}>비밀번호가 일치하지 않습니다.</span>}
                 </div>
                 <div onChange={handleNameChange}>
-                    <SignupComponent name="이름" text={"이름을"}/>
+                    <SignupComponent name="이름" text={"이름을"} value={name}/>
                 </div>
                 <div onChange={handleAgeChange}>
-                    <SignupComponent name="나이" text={"나이를"} />
+                    <SignupComponent name="나이" text={"나이를"} value={age}/>
                 </div>
                 <br/>
                 <button className="signup-button" disabled={!isPwMatch || !isValidEmail} onClick={submitSignup}>가입하기</button>
